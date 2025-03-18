@@ -180,72 +180,13 @@
 </section> -->
 
 
-<!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
+        <h2 class="title is-3">Coming Soon!</h2>
+          <!-- <p>
             Reconstructing precise camera poses and floor plan layouts from a set of 
             wide-baseline RGB panoramas is a difficult and unsolved problem. 
           </p>
@@ -273,7 +214,7 @@
             Our experiments and analysis validate our method, which significantly 
             outperforms the state-of-the-art pose and floor plan layouts reconstruction 
             with different input densities.
-          </p>
+          </p> -->
           <!-- <p>
             Our approach augments neural radiance fields
             (NeRF) by optimizing an
@@ -296,52 +237,10 @@
             images of the same pose at different viewpoints. We show that our method faithfully
             reconstructs non-rigidly deforming scenes and reproduces unseen views with high
             fidelity.
-          </p> -->
+          </p> --> 
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Framework</h2>
-        <div class="content has-text-justified">
-          <p>
-            Wide-baseline indoor reconstruction often suffers from a lack of robust 
-            matching features with sub-pixel accuracy. However, each wall can be 
-            represented by several image columns, with their floor boundary 
-            modeled as a line, as shown below. BADGR 
-            tackles the multi-view floor plan and pose reconstruction problem using 
-            a planar bundle adjustment (BA), minimizing reprojection errors between 
-            the input predicted floor boundaries from image-based models and the projected 
-            wall positions. These errors are computed at the column level and are used to 
-            adjust the wall translation along its normal direction and the corresponding 
-            camera pose, optimized via a Levenberg-Marquardt (LM) step.
-          </p>
-          <p>
-            Noise in the floor boundaries can introduce errors in the final BA 
-            results. To mitigate the noisy signal and incorporate learned 
-            layout-structural constraints, BADGR integrates the planar BA 
-            mechanism into a conditional denoising diffusion process. 
-            Instead of averaging column-wise wall and camera movements, 
-            the model encodes these dense signals and uses them to condition a 
-            transformer-based diffusion model. In this framework, posterior sampling is 
-            employed to generate the final adjustments, using raw BA adjustments as inputs.
-            The transformer model predicts the xy positions of camera poses and room vertices. 
-            To facilitate iterative interaction with planar BA, an angle-constrained scene 
-            representation is used, along with a Layout Directional Regularizer (LDR) 
-            to form a bidirectional map between 2D room vertex positions and wall positions 
-            while maintaining fixed angles. The details of this process are explained in the following section.
-          </p>
-        </div>
-        
-        <img src="./static/images/badgr_arch_v5.png"
-             class="interpolation-image"
-             alt="BADGR framework."/>
-      </div>
-    </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
