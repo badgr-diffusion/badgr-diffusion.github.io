@@ -186,7 +186,7 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Objectives</h2>
         <div class="content has-text-justified">
           <p>
             Reconstructing precise camera poses and floor plan layouts from a set of 
@@ -194,12 +194,38 @@
           </p>
           <p>
             We present <span class="dnerf">BADGR</span>, a novel diffusion model which 
-            performs both reconstruction and bundle adjustment (BA) optimization tasks, 
+            performs <span class="bold-blue">both generation and bundle adjustment (BA) optimization</span> tasks, 
             to refine camera poses and layouts from a given coarse state using 1D floor 
             boundary information from dozens of images of varying input densities. 
           </p>
         </div>
         </div>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-5">The ideas</h2>
+          <div class="content has-text-justified">
+            <p>
+              Wide-baseline indoor reconstruction often suffers from a lack of robust matching 
+              features with sub-pixel accuracy. However, each wall can be observed by several image columns, 
+              with their floor boundary modeled as a line. 
+              BADGR proposes <span class="bold-blue">a planar bundle adjustment (BA)</span>, minimizing reprojection errors between the input 
+              predicted floor boundaries from image-based models and the projected wall positions, and adjusting the wall translation 
+              along its normal direction and the corresponding camera pose.
+            </p>
+            <p>Image of a lack of constraints.</p>
+            <p>
+              Layout-structural constraints, e.g. wall adjacency and collinearity, are essential for accurate reconstruction, as sparse captures often result in limited visual overlaps between images. 
+              BADGR <span class="bold-blue">integrates the planar BA mechanism into a conditional denoising diffusion process</span> to mitigate the noisy signal and learn layout-structural constraints. 
+              Posterior sampling is employed to generate the final adjustments, using raw BA adjustments as inputs.
+            </p>
+            <p>
+              The floor plan being optimized is represented angle-constrained with a Layout Directional Regularizer (LDR) to form a bidirectional 
+              map between 2D room vertex positions and wall positions while maintaining fixed angles.
+            </p>
+          </div>
+        </div> 
       </div>
       
       <div class="columns is-centered has-text-centered">

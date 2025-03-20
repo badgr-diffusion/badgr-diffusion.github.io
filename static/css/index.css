@@ -161,3 +161,8 @@ body {
   justify-content: center;
   align-items: center;
 } 
+
+.bold-blue {
+  color: blue;
+  font-weight: bold;
+} 
