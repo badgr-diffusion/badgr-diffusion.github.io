@@ -33,12 +33,14 @@
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  
 </head>
 <body>
 
@@ -89,7 +91,7 @@
             <span class="author-block">
               <a href="https://iboyadzhiev.github.io/">Ivaylo Boyadzhiev</a>,</span>
             <span class="author-block">
-              <a href="**">Zixuan Liu</a><sup>1</sup>,
+              Zixuan Liu<sup>1</sup>,
             </span>
             <span class="author-block">
               <a href="https://homes.cs.washington.edu/~shapiro/">Linda Shapiro</a><sup>1</sup>,
@@ -163,21 +165,20 @@
   </div>
 </section>
 
-<!-- <section class="hero teaser">
+<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
         <source src="./static/videos/teaser.mp4"
                 type="video/mp4">
-      </video>
+      </video> -->
+      <img src="./static/images/0010.gif" alt="Description of GIF" loop=infinite>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        <span class="dnerf">BADGR</span> 
       </h2>
     </div>
   </div>
-</section> -->
+</section>
 
 
 <section class="section">
@@ -185,8 +186,9 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Coming Soon!</h2>
-          <!-- <p>
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
             Reconstructing precise camera poses and floor plan layouts from a set of 
             wide-baseline RGB panoramas is a difficult and unsolved problem. 
           </p>
@@ -209,35 +211,21 @@
             dense boundary observations with global contexts. 
           </p>
           <p>
-            BADGR trains exclusively on 2D floor plans, simplifying data acquisition, 
+            <span class="dnerf">BADGR</span> trains exclusively on 2D floor plans, simplifying data acquisition, 
             enabling robust augmentation, and supporting variety of input densities. 
             Our experiments and analysis validate our method, which significantly 
             outperforms the state-of-the-art pose and floor plan layouts reconstruction 
             with different input densities.
-          </p> -->
-          <!-- <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
           </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p> --> 
+        </div>
+        </div>
+      </div>
+
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+          
+        </div>
         </div>
       </div>
     </div>
@@ -271,7 +259,7 @@
 
     <div class="content has-text-justified">
       <p>
-        We are grateful to <a href="https://**.com">Sing Bing Kang</a> for discussions and paper edits on this work. In addition, we appreciate the generous contributions from Zillow Group on providing the FloorPlan60K dataset throughout this research.  
+        We are grateful to <a href="https://www.singbingkang.com/">Sing Bing Kang</a> for discussions and paper edits on this work. In addition, we appreciate the generous contributions from Zillow Group on providing the FloorPlan60K dataset throughout this research.  
       </p>
     </div>
   </div>
