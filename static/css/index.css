@@ -155,3 +155,9 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.framework {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
