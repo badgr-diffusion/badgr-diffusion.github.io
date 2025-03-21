@@ -85,7 +85,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">BADGR: Bundle Adjustment Diffusion Conditioned by GRadients for Wide-Baseline Floor Plan Reconstruction</h1>
+          <h1 class="title is-3 publication-title">BADGR: Bundle Adjustment Diffusion Conditioned by GRadients for Wide-Baseline Floor Plan Reconstruction</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://yuguang-li.github.io">Yuguang Li</a><sup>1</sup>,</span>
@@ -111,7 +111,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="**"
+                <a href="https://cvpr.thecvf.com/virtual/2025/poster/33282"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -175,8 +175,9 @@
       </video> -->
 
       <p>
-        <span class="hero-title">Input floor boundary estimates and global instance segmentation for walls
-        </span> 
+        <span class="hero-title w70">
+          Input floor boundary estimates and global instance segmentation for walls derived from pairwise CovisPose model.
+        </span>
       </p>
       <img src="./static/images/badgr_inputs_2.png" alt="Description of GIF" class="hero1">
       <p>
@@ -194,7 +195,7 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Objectives</h2>
+        <h2 class="title is-5">Objectives</h2>
         <div class="content has-text-justified">
           <p>
             Reconstructing precise camera poses and floor plan layouts from a set of 
@@ -222,13 +223,12 @@
               predicted floor boundaries from image-based models and the projected wall positions, and adjusting the wall translation 
               along its normal direction and the corresponding camera pose.
             </p>
-            <div class="img-container" style="width: 70%; height: auto;">
-              <img src="./static/images/column_ba_v3.png" 
-                   alt="Visual connections."/>
-              <figcaption>
-                <span class="caption">Planar BA, animated version WIP.</span> 
-              </figcaption>
+            <div class="img-container w70">
+              <img src="./static/images/column_ba_v3.png" alt="Visual connections."/>
             </div>
+            <figcaption style="padding-bottom: 20px;">
+              <span class="caption">Planar BA, animated version WIP.</span> 
+            </figcaption>
             <p>
               Layout-structural constraints, e.g. wall adjacency and collinearity, are essential for accurate reconstruction, as sparse captures often result in limited visual overlaps between images. 
               BADGR <span class="bold-blue">integrates the planar BA mechanism into a conditional denoising diffusion process</span> to mitigate the noisy signal and learn layout-structural constraints. 
@@ -290,11 +290,10 @@
         </div>
       </div>
       <div class="img-container">
-        <img src="./static/images/badgr_arch_v6.png" 
-           alt="BADGR framework." style="width: 100%; height: auto;"/>
+        <img src="./static/images/badgr_arch_v6.png" alt="BADGR framework." />
           <figcaption>
             <span class="caption">
-              BADGR architecture.
+              BADGR architecture. Simplified version WIP.
             </span> 
           </figcaption>
       </div>
@@ -303,7 +302,14 @@
         <div class="column is-four-fifths">
           <h2 class="title is-5">Qualitive Results</h2>
           <div class="content has-text-justified">
-            
+            <div class="img-container">
+              <img src="./static/images/qualitative.png" 
+                   alt="Visual connections."/>
+              <!-- <figcaption>
+                <span class="caption">Wide-baseline indoor reconstruction suffers from a lack of visual connections. Planar BA along with learned layout-structural constaints 
+                  effectively increase the amount of image columns usable for globl optimization.</span> 
+              </figcaption> -->
+            </div>
           </div>
         </div>
     </div>
