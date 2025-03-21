@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -65,10 +66,10 @@
           More Research
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="**/">
+          <a class="navbar-item" href="https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136920610.pdf">
             CovisPose
           </a>
-          <a class="navbar-item" href="**/">
+          <a class="navbar-item" href="https://github.com/zillow/salve">
             salve
           </a>
         </div>
@@ -214,12 +215,20 @@
               predicted floor boundaries from image-based models and the projected wall positions, and adjusting the wall translation 
               along its normal direction and the corresponding camera pose.
             </p>
-            <p>Image of a lack of constraints.</p>
+            
             <p>
               Layout-structural constraints, e.g. wall adjacency and collinearity, are essential for accurate reconstruction, as sparse captures often result in limited visual overlaps between images. 
               BADGR <span class="bold-blue">integrates the planar BA mechanism into a conditional denoising diffusion process</span> to mitigate the noisy signal and learn layout-structural constraints. 
               Posterior sampling is employed to generate the final adjustments, using raw BA adjustments as inputs.
             </p>
+            <div class="crop-container">
+              <img src="./static/images/visual_connection.gif" 
+                   alt="Visual connections."/>
+              <figcaption>
+                <span class="caption">Wide-baseline indoor reconstruction suffers from a lack of visual connections. Planar BA along with learned layout-structural constaints 
+                  effectively increase the amount of image columns usable for globl optimization.</span> 
+              </figcaption>
+            </div>
             <p>
               The floor plan being optimized is represented angle-constrained with a Layout Directional Regularizer (LDR) to form a bidirectional 
               map between 2D room vertex positions and wall positions while maintaining fixed angles.
@@ -244,6 +253,19 @@
               graph, such as wall adjacency, collinearity, and learn to mitigate errors from 
               dense boundary observations with global contexts. 
             </p>
+            <div class="crop-container">
+              <img src="./static/images/guided_all.gif" 
+                   class="guided-diffusion-gif" 
+                   alt="Guided diffusion."/>
+              <figcaption>
+                <span class="caption">
+                  Although HouseDiffusion can be guided by our planar BA module, where 
+                  the adjustments from single-step LM optimizer are added to diffusion outputs of each time step,
+                  the two flows can conflict with each other, which results into jittering convergence. The 
+                  output floor plan can violate the layout-structural constraints. The results won't converge from either diffusion or BA.
+                </span> 
+              </figcaption>
+            </div>
             <p>
               <span class="dnerf">BADGR</span> trains exclusively on 2D floor plans, simplifying data acquisition, 
               enabling robust augmentation, and supporting variety of input densities. 
@@ -256,8 +278,16 @@
       </div>
       <div class="framework">
         <img src="./static/images/badgr_arch_v6.png" 
-           alt="BADGR framework." style="width: 200%; height: auto;"/>
+           alt="BADGR framework." style="width: 200%; height: auto;;"/>
       </div>
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-5">Framework</h2>
+          <div class="content has-text-justified">
+            
+          </div>
+        </div>
     </div>
   </div>
 </section>
