@@ -174,16 +174,22 @@
                 type="video/mp4">
       </video> -->
 
-      <p>
+      <!-- <p>
         <span class="hero-title w70">
           Input floor boundary estimates and global instance segmentation for walls derived from pairwise CovisPose model.
         </span>
       </p>
-      <img src="./static/images/badgr_inputs_2.png" alt="Description of GIF" class="hero1">
-      <p>
-        <span class="hero-title">BADGR - floor plan & camera pose refinement</span> 
-      </p>
+      <img src="./static/images/badgr_inputs_2.png" alt="Description of GIF" class="hero1"> -->
+
       <img src="./static/images/0010.gif" alt="Description of GIF" loop=infinite>
+      <p>
+        <span class="bold-orange">BADGR</span> is a novel diffusion model which 
+              performs <span class="bold-blue">both bundle adjustment (BA) optimization and
+              layout inpainting </span> tasks, to refine camera poses and layouts from a given coarse state using 1D floor 
+              boundary information from dozens of images of varying input densities. The learned layout-structural constraints
+              help BADGR to make plausible guesses on spatial relations which help constrain pose graph, such as wall adjacency, collinearity, 
+              and learn to mitigate errors from inputs.
+      </p>
       
     </div>
   </div>
@@ -194,23 +200,6 @@
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-5">Objectives</h2>
-        <div class="content has-text-justified">
-          <p>
-            Reconstructing precise camera poses and floor plan layouts from a set of 
-            wide-baseline RGB panoramas is a difficult and unsolved problem. 
-          </p>
-          <p>
-            We present <span class="dnerf">BADGR</span>, a novel diffusion model which 
-            performs <span class="bold-blue">both generation and bundle adjustment (BA) optimization</span> tasks, 
-            to refine camera poses and layouts from a given coarse state using 1D floor 
-            boundary information from dozens of images of varying input densities. 
-          </p>
-        </div>
-        </div>
-      </div>
-
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-5">The ideas</h2>
