@@ -183,7 +183,16 @@
           </p>
           <img src="./static/images/badgr_inputs_2.png" alt="Description of GIF" class="hero1"> -->
 
-          <img src="./static/images/0010.gif" alt="Description of GIF" loop=infinite>
+          <!-- <img src="./static/images/badgr_hero.mp4" alt="Description of GIF" loop=infinite> -->
+          <video id="teaser" autoplay muted loop playsinline height="100%">
+            <source src="./static/images/badgr_hero.mp4"
+                    type="video/mp4">
+          </video>
+          <!-- <p>
+            <span class="hero-title w70">
+              BADGR:.
+            </span>
+          </p> -->
           
         </div>
       </div>
@@ -219,15 +228,8 @@
             Direct 
             </p>
           </div> -->
-          <h2 class="title is-5">The ideas</h2>
+          <h2 class="title is-5">Planar Bundle Adjustment</h2>
           <div class="content has-text-justified">
-            <p>
-              <span class="bold-orange">BADGR</span> is <span class="bold-blue">a layout diffusion model conditioned on</span>
-              dense per-column outputs from our proposed planar BA module, which is based on a single-step Levenberg Marquardt (LM) 
-              optimizer. BADGR is trained to predict camera and wall positions while minimizing 
-              both reprojection errors, where two iterative processes, i.e. non-linear optimization and layout generation, 
-              are learned jointly with view-consistency and reconstrution losses. 
-            </p>
             <!-- <p>
               The objective of layout generation from denoising diffusion process complements 
               BA optimization by providing additional learned layout-structural constraints 
@@ -257,11 +259,32 @@
               Feature matching methods oftern suffers from a lack of robust matching features with sub-pixel accuracy.    
             </p>
             <div class="img-container w70">
-              <img src="./static/images/column_ba_v3.png" alt="Visual connections."/>
+              <img src="./static/images/ba_columns.gif" alt="Visual connections."/>
             </div>
             <figcaption style="padding-bottom: 20px;">
-              <span class="caption">Planar BA, animated version WIP.</span> 
+              <span class="caption">Our planar BA module for adjusting both camera poses and walls using the predicted floor boundary as observations.</span> 
             </figcaption>
+
+            <div class="img-container">
+              <img src="./static/images/ba_only.gif" alt="BADGR framework." />
+                <figcaption>
+                  <span class="caption">
+                    Pipeline of planar BA optimization without learning components. 
+                  </span> 
+                </figcaption>
+            </div>
+          </div>
+
+          <h2 class="title is-5"><span class="bold-orange">BADGR</span> & Learned Global Constriants</h2>
+          <div class="content has-text-justified">
+
+            <p>
+              <span class="bold-orange">BADGR</span> is <span class="bold-blue">a layout diffusion model conditioned on</span>
+              dense per-column outputs from our proposed planar BA module, which is based on a single-step Levenberg Marquardt (LM) 
+              optimizer. BADGR is trained to predict camera and wall positions while minimizing 
+              both reprojection errors, where two iterative processes, i.e. non-linear optimization and layout generation, 
+              are learned jointly with view-consistency and reconstrution losses. 
+            </p>
             <p>
               <span class="bold-blue">Layout-structural constraints</span>, e.g. wall adjacency and collinearity, are essential for accurate reconstruction, 
               as sparse captures often result in limited visual overlaps between images. Heuristic-based constraints are often 
@@ -291,13 +314,20 @@
       
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-5">Framework</h2>
           <div class="content has-text-justified">
+            <div class="img-container">
+              <img src="./static/images/architecture.gif" alt="BADGR framework." />
+                <figcaption>
+                  <span class="caption">
+                    BADGR architecture. 
+                  </span> 
+                </figcaption>
+            </div>
             <p>
-              Unlike a guided diffusion model, such as PoseDiffusion, BADGR is conditioned 
+              Unlike a guided diffusion model, such as <a href="https://posediffusion.github.io/">PoseDiffusion</a>, where the guidance 
+              is simply added to the predicted adjustment, BADGR is conditioned 
               on dense per-feature outputs from a single-step Levenberg Marquardt (LM) 
-              optimizer and is trained to predict camera and wall positions while minimizing 
-              reprojection errors for view-consistency. 
+              optimizer and is trained to minimizing reprojection errors. 
               The objective of layout generation from denoising diffusion process complements 
               BA optimization by providing additional learned layout-structural constraints 
               on top of the co-visible features across images. These constraints help 
@@ -311,8 +341,7 @@
                    alt="Guided diffusion."/>
               <figcaption>
                 <span class="caption">
-                  Although HouseDiffusion can be guided by our planar BA module, where 
-                  the adjustments from single-step LM optimizer are added to diffusion outputs of each time step,
+                  When the adjustments from single-step LM optimizer are added to the denoising diffusion outputs of each time step,
                   the two flows can conflict with each other, which results into jittering convergence. The 
                   output floor plan can violate the layout-structural constraints. The results won't converge from either diffusion or BA.
                 </span> 
@@ -324,14 +353,6 @@
             </p>
           </div>
         </div>
-      </div>
-      <div class="img-container">
-        <img src="./static/images/badgr_arch_v6.png" alt="BADGR framework." />
-          <figcaption>
-            <span class="caption">
-              BADGR architecture. Simplified version WIP.
-            </span> 
-          </figcaption>
       </div>
 
       <div class="columns is-centered has-text-centered">
@@ -345,6 +366,24 @@
                 <span class="caption">Wide-baseline indoor reconstruction suffers from a lack of visual connections. Planar BA along with learned layout-structural constaints 
                   effectively increase the amount of image columns usable for globl optimization.</span> 
               </figcaption> -->
+              <div style="
+                width: 80%; padding-bottom: 20px;display: flex;
+                align-items: center;
+                margin: auto;
+                justify-content: center;">
+                <video id="teaser" autoplay muted loop playsinline height="100%">
+                  <source src="./static/images/0039_f5d0e61ce2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              
+
+
+
+              <video id="teaser" autoplay muted loop playsinline height="100%">
+                <source src="./static/images/0057_2bd44a63ca.mp4"
+                        type="video/mp4">
+              </video>
             </div>
           </div>
         </div>
@@ -363,13 +402,17 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{li2025badgr
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{li2025badgr
   author    = {Li, Yuguang and Boyadzhiev, Ivaylo and Liu, Zixuan and Shapiro, Linda and Colburn, Alex},
   title     = {BADGR: Bundle Adjustment Diffusion Conditioned by GRadients for Wide-Baseline Floor Plan Reconstruction},
   journal   = {CVPR},
   year      = {2025},
-}</code></pre> 
+}</code> </pre> 
+      </div>
+    </div>
   </div>
 </section>
 
