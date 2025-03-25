@@ -38,11 +38,12 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel/dist/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   
-</head>
+</head> 
 <body>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -212,8 +213,8 @@
             <span class="bold-orange">BADGR</span> 
                   performs <span class="bold-blue">both bundle adjustment (BA) optimization and
                   layout inpainting</span> tasks, to refine camera poses and layouts from a given coarse state using 1D floor 
-                  boundary information from dozens of images of varying input densities. The <span class="bold-blue">learned layout-structural constraints</span>, 
-                  such as wall adjacency, collinearity, help BADGR to constrain pose graph and learn to mitigate errors from inputs.
+                  boundary information from up-to-30 or more images of varying input densities. The <span class="bold-blue">learned layout-structural constraints</span>, 
+                  such as wall adjacency, collinearity, help BADGR to 1) constrain pose graph, 2) learn to mitigate errors from inputs, and 3) inpaint occluded layouts.
           </p> 
         </div>
         </div>
@@ -228,6 +229,18 @@
             Direct 
             </p>
           </div> -->
+
+          <h2 class="title is-5">Framework</h2>
+          <div class="content has-text-justified">
+            <p>
+              <span class="bold-orange">BADGR</span> is <span class="bold-blue">a layout diffusion model conditioned on</span>
+              dense per-column adjustment outputs from our proposed planar BA module, which is based on a single-step Levenberg Marquardt (LM) 
+              optimizer. BADGR is trained to predict camera and wall positions while minimizing 
+              both reprojection errors, where two iterative processes, i.e. non-linear optimization and performing layout generation, 
+              are learned jointly with view-consistency and reconstrution losses. See <a href="#architecture">section below</a> for architecture details. 
+            </p>
+          </div>
+
           <h2 class="title is-5">Planar Bundle Adjustment</h2>
           <div class="content has-text-justified">
             <!-- <p>
@@ -252,11 +265,12 @@
               </figcaption>
             </div> -->
             <p>
-              Our <span class="bold-blue">planar bundle adjustment (BA)</span> minimizes reprojection errors between the input 
-              predicted floor boundaries from image-based models and the projected wall positions, and adjusts the wall translation 
-              along its normal direction and the corresponding camera pose. Image columns from different images are grouped by their
-              global wall instancess, as each wall can be observed by several image columns, with their floor boundary modeled as a line.
-              Feature matching methods oftern suffers from a lack of robust matching features with sub-pixel accuracy.    
+              Our <span class="bold-blue">planar bundle adjustment (BA)</span> minimizes reprojection errors between predicted floor boundaries 
+              from image-based models and projected wall positions, adjusting wall translations along their normal direction and corresponding 
+              camera poses. Before optimization, image columns from different images are grouped by global wall instances, with each wall 
+              observed by multiple image columns and its floor boundary modeled as a line. Compared to point-based feature matching methods, 
+              which often lack robust matching features with sub-pixel accuracy from wide-baseline indoor environments, our planar BA performs 
+              feature matching at the global instance level for greater robustness and utilizes a larger portion of image columns during optimization. 
             </p>
             <div class="img-container w70">
               <img src="./static/images/ba_columns.gif" alt="Visual connections."/>
@@ -269,30 +283,22 @@
               <img src="./static/images/ba_only.gif" alt="BADGR framework." />
                 <figcaption>
                   <span class="caption">
-                    Pipeline of planar BA optimization without learning components. 
+                    Planar BA optimization operates without learning components. Below, BADGR integrates this classic optimization into a denoising diffusion process, 
+                    incorporating global layout constraints and inpainting objectives.
                   </span> 
                 </figcaption>
             </div>
           </div>
 
-          <h2 class="title is-5"><span class="bold-orange">BADGR</span> & Learned Global Constriants</h2>
+          <h2 class="title is-5">Learned Global Constriants & <span class="bold-orange">BADGR</span></h2>
           <div class="content has-text-justified">
-
             <p>
-              <span class="bold-orange">BADGR</span> is <span class="bold-blue">a layout diffusion model conditioned on</span>
-              dense per-column outputs from our proposed planar BA module, which is based on a single-step Levenberg Marquardt (LM) 
-              optimizer. BADGR is trained to predict camera and wall positions while minimizing 
-              both reprojection errors, where two iterative processes, i.e. non-linear optimization and layout generation, 
-              are learned jointly with view-consistency and reconstrution losses. 
-            </p>
-            <p>
-              <span class="bold-blue">Layout-structural constraints</span>, e.g. wall adjacency and collinearity, are essential for accurate reconstruction, 
-              as sparse captures often result in limited visual overlaps between images. Heuristic-based constraints are often 
-              hard to generalize and may not be applicable to all scenes.
-              BADGR uses the denoising diffusion model to learn these constraints from data without complex regularization terms for training. 
-              It integrates planar BA mechanism as conditions, and predicts more accurate scene refinements than applying planar BA directly. 
-              In other words, posterior sampling process is applied to each BA step to improve the accuracy and efficiency of BA step. 
-
+              <span class="bold-blue">Layout-structural constraints</span>, such as wall adjacency and collinearity, are crucial 
+              for accurate reconstruction, as sparse captures often limit visual overlap between images. Heuristic-based constraints 
+              struggle to generalize and may not apply to all scenes. BADGR leverages a denoising diffusion model to learn these 
+              constraints without complex regularization. It conditions on the planar BA mechanism, producing more accurate scene 
+              refinements than planar BA alone. The diffusion model serves as posterior sampling at each BA step to improve accuracy 
+              and efficiency.
             </p>
             <div class="img-container">
               <img src="./static/images/visual_connection.gif" 
@@ -315,7 +321,18 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="content has-text-justified">
-            <div class="img-container">
+            <p>
+              <span class="bold-orange">BADGR</span> inherits the transformer-based layout 
+              generation model from HouseDiffusion. Dense per-column planar BA guidance is 
+              restructured and compressed into guidance embeddings, along with coordinate and 
+              metadata embeddings for each wall and camera, which are then used as inputs to the 
+              transformer engine. The model is trained to predict epsilon to x0. In other words, 
+              BA guidance provides the gradients of adjustment, while the transformer makes the 
+              final prediction on the refined layouts and poses, ensuring view consistency and 
+              maintaining global constraints at each denoising step.
+
+            </p>
+            <div class="img-container" id="architecture">
               <img src="./static/images/architecture.gif" alt="BADGR framework." />
                 <figcaption>
                   <span class="caption">
@@ -323,32 +340,40 @@
                   </span> 
                 </figcaption>
             </div>
+
             <p>
+              Compared to a guided diffusion model like <a href="https://posediffusion.github.io/">PoseDiffusion</a>, 
+              where guidance is simply added to the predicted adjustment, <span class="bold-orange">BADGR</span> learns to combine global layout-structural 
+              constraints with the objective of maximizing view consistency, trained with an additional reprojection loss. 
+              The model avoids conflicting flows, unlike guided diffusion, as shown below. Our quantitative results show that 
+              BADGR is more accurate than both the guided diffusion model and the BA-only model, requiring 5X fewer iterations to 
+              converge compared to the BA-only model.
+            </p>
+
+            <!-- <p>
               Unlike a guided diffusion model, such as <a href="https://posediffusion.github.io/">PoseDiffusion</a>, where the guidance 
               is simply added to the predicted adjustment, BADGR is conditioned 
-              on dense per-feature outputs from a single-step Levenberg Marquardt (LM) 
-              optimizer and is trained to minimizing reprojection errors. 
-              The objective of layout generation from denoising diffusion process complements 
-              BA optimization by providing additional learned layout-structural constraints 
-              on top of the co-visible features across images. These constraints help 
+              on dense per-column adjustments. The model learns to 
+              combine global layout-structural constraints with the objective of maximizing view consistency.
+              These constraints help 
               BADGR to make plausible guesses on spatial relations which help constrain pose 
               graph, such as wall adjacency, collinearity, and learn to mitigate errors from 
               dense boundary observations with global contexts. 
-            </p>
+            </p> -->
             <div class="img-container">
               <img src="./static/images/guided_all.gif" 
                    class="guided-diffusion-gif" 
                    alt="Guided diffusion."/>
               <figcaption>
                 <span class="caption">
-                  When the adjustments from single-step LM optimizer are added to the denoising diffusion outputs of each time step,
-                  the two flows can conflict with each other, which results into jittering convergence. The 
-                  output floor plan can violate the layout-structural constraints. The results won't converge from either diffusion or BA.
+                  In the example of HouseDiffusion guided by our planar BA module, adding the two flows causes jittery convergence, 
+                  leading to violations of layout-structural constraints in the output floor plan. The optimization ends in sub-optimal 
+                  states, with unresolved conflicts.
                 </span> 
               </figcaption>
             </div>
             <p>
-              <span class="dnerf">BADGR</span> trains exclusively on 2D floor plans, simplifying data acquisition, 
+              <span class="dnerf">BADGR</span> trains exclusively on 2D floor plans with simulated floor boundaries generated on-the-fly during training, simplifying data acquisition, 
               enabling robust augmentation, and supporting variety of input densities. 
             </p>
           </div>
@@ -366,27 +391,38 @@
                 <span class="caption">Wide-baseline indoor reconstruction suffers from a lack of visual connections. Planar BA along with learned layout-structural constaints 
                   effectively increase the amount of image columns usable for globl optimization.</span> 
               </figcaption> -->
-              <div style="
-                width: 80%; padding-bottom: 20px;display: flex;
-                align-items: center;
-                margin: auto;
-                justify-content: center;">
-                <video id="teaser" autoplay muted loop playsinline height="100%">
-                  <source src="./static/images/0039_f5d0e61ce2.mp4"
-                          type="video/mp4">
-                </video>
-              </div>
-              
-
-
-
-              <video id="teaser" autoplay muted loop playsinline height="100%">
-                <source src="./static/images/0057_2bd44a63ca.mp4"
-                        type="video/mp4">
-              </video>
             </div>
           </div>
         </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-0039">
+          <div style="
+            width: 90%; padding-bottom: 20px;display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <video id="0039" autoplay muted loop playsinline height="100%">
+              <source src="./static/images/0039_f5d0e61ce2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="item item-0057">
+          <div style="
+            width: 90%; padding-bottom: 20px;display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <video id="0057" autoplay muted loop playsinline height="100%">
+              <source src="./static/images/0057_2bd44a63ca.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
