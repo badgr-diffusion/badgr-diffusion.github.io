@@ -278,6 +278,9 @@
               feature matching at the global instance level for greater robustness and utilizes a larger portion of image columns during optimization. 
             </p>
             <div class="img-container w70">
+              <video id="connection" autoplay muted loop playsinline height="100%">
+                <source src="./static/images/ba_columns.mp4" type="video/mp4">
+              </video>
               <img src="./static/images/ba_columns.gif" alt="Visual connections."/>
             </div>
             <figcaption style="padding-bottom: 20px;">
@@ -349,13 +352,13 @@
               <img src="./static/images/architecture.gif" alt="BADGR framework." />
                 <figcaption>
                   <span class="caption">
-                    <span class="bold-orange">BADGR</span> architecture. 
+                    <span class="bold-orange">BADGR</span> architecture breakdown. Transformer is used to determine optimization adjustment given gradients.
                   </span> 
                 </figcaption>
             </div>
 
             <p>
-              Compared to a guided diffusion model like <a href="https://posediffusion.github.io/">PoseDiffusion</a>, 
+              Compared to a guided diffusion model like <a href="https://posediffusion.github.io/"><span class="bold-blue">PoseDiffusion</span></a>, 
               where guidance is simply added to the predicted adjustment, <span class="bold-orange">BADGR</span> learns to combine global layout-structural 
               constraints with the objective of maximizing view consistency, trained with an additional reprojection loss. 
               The model avoids conflicting flows, unlike guided diffusion, as shown below. Our quantitative results show that 
@@ -509,7 +512,7 @@
             width: 100%; display: flex;
             align-items: center; margin: auto; justify-content: center;">
             <video id="0021" autoplay muted loop playsinline height="100%">
-              <source src="./static/samples/1326_bb0c79bec4_2.mp4"
+              <source src="./static/samples/1326_bb0c79bec4.mp4"
                       type="video/mp4">
             </video>
           </div>
