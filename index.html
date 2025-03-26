@@ -201,7 +201,6 @@
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -387,23 +386,86 @@
           </div>
         </div>
       </div>
+  </div>
+</section>
 
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-5">Qualitive Results</h2>
-          <div class="content has-text-justified">
-            <div class="img-container">
-              <img src="./static/images/qualitative.png" 
-                   alt="Visual connections."/>
-              <!-- <figcaption>
-                <span class="caption">Wide-baseline indoor reconstruction suffers from a lack of visual connections. Planar BA along with learned layout-structural constaints 
-                  effectively increase the amount of image columns usable for globl optimization.</span> 
-              </figcaption> -->
-            </div>
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    <h2 class="title is-5">Qualitive Results</h2>
+  </div>
+</div>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel1" class="carousel1 results-carousel1">
+        <div class="item item-s1">
+          <div style="
+            width: 90%; display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <img src="/static/quant_examples/quals_s1.png" id="s1" class="guided-diffusion-gif" 
+            alt="Sample s1."/>
           </div>
         </div>
+        <div class="item item-s2">
+          <div style="
+            width: 90%; display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <img src="/static/quant_examples/quals_s2.png" id="s2" class="guided-diffusion-gif" 
+            alt="Sample s2."/>
+          </div>
+        </div>
+        <div class="item item-s3">
+          <div style="
+            width: 90%; display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <img src="/static/quant_examples/quals_s3.png" id="s3" class="guided-diffusion-gif" 
+            alt="Sample s3."/>
+          </div>
+        </div>
+        <div class="item item-s4">
+          <div style="
+            width: 90%; display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <img src="/static/quant_examples/quals_s4.png" id="s4" class="guided-diffusion-gif" 
+            alt="Sample s4."/>
+          </div>
+        </div>
+        <div class="item item-s5">
+          <div style="
+            width: 90%; display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <img src="/static/quant_examples/quals_s5.png" id="s5" class="guided-diffusion-gif" 
+            alt="Sample s5."/>
+          </div>
+        </div>
+        <div class="item item-s6">
+          <div style="
+            width: 90%; display: flex;
+            align-items: center; margin: auto; justify-content: center;">
+            <img src="/static/quant_examples/quals_s6.png" id="s6" class="guided-diffusion-gif" 
+            alt="Sample s6."/>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Layout & camera poses. Left: Coarse outputs from 
+            <a href="https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136920610.pdf"><span class="bold-blue">CovisPose</span></a>. 
+            Mid: refined outputs from <span class="bold-orange">BADGR</span>. Right: Ground truth.
+          </p> 
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </section>
 
 <section class="hero is-light is-small">
@@ -528,7 +590,7 @@
   <div class="container is-max-desktop content">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title">BibTeX</h2>
+        <h2 class="title is-5">BibTeX</h2>
         <pre><code>@article{li2025badgr
   author    = {Li, Yuguang and Boyadzhiev, Ivaylo and Liu, Zixuan and Shapiro, Linda and Colburn, Alex},
   title     = {BADGR: Bundle Adjustment Diffusion Conditioned by GRadients for Wide-Baseline Floor Plan Reconstruction},
